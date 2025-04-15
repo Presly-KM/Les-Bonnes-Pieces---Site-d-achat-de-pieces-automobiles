@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<title>Les Bonnes Pièces</title>
+	<link rel="stylesheet" href="styles.css">
+		<script src="node_modules\chart.js\dist\chart.umd.js" defer></script>        <!--Faire attention dans l'écriture du lien vers la librairie. Ici la présence de "site-web\" devant "node_modules\chart.js\dist\chart.umd.js" ne marche pas. Ni la simple présence de "\" devant node_modules. Il faut donc écrire "node_modules" sans rien devant.-->
+		<script type="module" src="pieces.js"></script>
+	<!--L’attribut defer de la balise script permet de retarder le chargement de ce fichier à plus tard, lorsque le fichier index.html aura, lui-même, fini de se charger.-->
+</head>
+
+<body>
+	<header>
+		<img src="images/logo-les-bonnes-pieces.png" alt="LOGO">
+		<h1>Les Bonnes Pièces</h1>
+	</header>
+	<main>
+		<!-- Menu de recherche -->
+		<section class="filtres">
+			<h3>Filtres</h3>
+			<button class="btn-trier">Trier par prix croissant</button>
+			<br>
+			<button class="btn-filtrer">Filtrer les pièces non abordables</button>
+			<br>
+			<button class="btn-decroissant">Trier par prix décroissant</button>
+			<br>
+			<button class="btn-nodesc">Filtrer les pièces sans description</button>
+			<br>
+			<p>Prix maximum:</p>
+			<input type="range" name="prix-max" id="prix-max" min="0" max="60" step="5">
+			<!--Les attributs min et max limiteront la valeur minimale et maximale que l'utilisteur pourra sélectionner. L'attribut "step" permet de spécifier l'écart entre chaque valeur selectionnable-->
+			<!-- code a ajouter -->
+			<h3>Ajouter un avis</h3>
+			<!--J’ai ajouté un formulaire dans le fichier index.html qui vous permettra d’écrire un nouvel avis-->
+			<form class="formulaire-avis">
+				Identifiant de la pièce :<br>
+				<input type="number" name="piece-id"><br>
+				Nom d'utilisateur :<br>
+				<input type="text" name="utilisateur"><br>
+				Avis :<br>
+				<input type="text" name="commentaire"><br>
+				Note:<br>
+				<input type="number" name="nbEtoiles" min="0" max="5"><br>
+				<button>Envoyer</button>
+			</form>
+			<h3>Données</h3>
+			<button class="btn-maj">Mettre à jour les pièces</button> <!-- Lors du clic sur ce bouton, nous supprimerons les données du localStorage. Lors du prochain chargement de la page, l’API HTTP sera à nouveau appelée pour obtenir la toute dernière version des pièces auto-->
+			<!-- Code à ajouter -->
+			<h3>Aperçu des avis</h3>
+			<canvas id="graphique-avis" width="300" height="300"></canvas>
+			<h3>Statistiques commentaires</h3>
+			<canvas id="graphique-dispo" width="300" height="300"></canvas>
+		</section>
+
+		<!-- Fiches produits -->
+		<section class="fiches">
+			<!-- Code ajouté -->
+			<div class="abordables">
+			</div>
+			<div class="disponibles">
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>
